@@ -51,7 +51,7 @@ if ($FailedFeatures.Length -gt 1){
 	}
 }
 $title = "Restart Prompt"
-$message = "Do you want to restart system now?"
+$message = "For Changes to Take Effect You Need to Restart, Do You Want to Restart System Now?"
 switch($QuestionRunMode){
 	0{
 		$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","System will restart right now"
