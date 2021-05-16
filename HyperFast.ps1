@@ -13,12 +13,9 @@
 #>
 
 Write-Host "`n`n`n`n`n`n`n"
-
 $QuestionRunMode = 1 # <<< Change This If you want a CLI prompt instead of a MsgBox [1:MsgBox 0:CLI]
-
 $WindowsFeatures = @('Containers','Containers-DisposableClientVM','VirtualMachinePlatform','HypervisorPlatform','Microsoft-Hyper-V-Tools-All','Microsoft-Hyper-V-All','Microsoft-Hyper-V-Management-Clients','Microsoft-Hyper-V-Services','Microsoft-Hyper-V-Hypervisor','Microsoft-Hyper-V-Management-PowerShell')
 $FailedFeatures = @('Some Features Failed to get Enabled/Disabled, including: ')
-
 try {
 	$WindowsFeatureState = (Get-WindowsOptionalFeature -FeatureName 'VirtualMachinePlatform' -Online).State
 }
@@ -26,7 +23,6 @@ catch {
 	Write-Error "Failed to get the state of VirtualMachinePlatform Windows Feature as Scale Feature"
 	exit
 }
-
 Foreach ($WindowsFeature in $WindowsFeatures) {
 	try {
 		if($WindowsFeatureState -eq 'Enabled') {
@@ -76,7 +72,6 @@ switch($QuestionRunMode){
 		}
 	}
 }
-
 switch ($result) {
 	0 {
 		Write-Host "Restarting..."
