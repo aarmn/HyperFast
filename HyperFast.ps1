@@ -14,7 +14,7 @@
 	HyperFast.ps1
 #>
 
-Write-Host "\n\n\n\n\n\n\n\n\n\n"
+Write-Host "`n`n`n`n`n`n`n"
 
 $QuestionRunMode = 1 # <<< Change This If you want a CLI prompt instead of a MsgBox [1:MsgBox 0:CLI]
 
