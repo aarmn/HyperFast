@@ -6,12 +6,10 @@
 .NOTES
  	Author: AARMN The LIMITLESS
 	Contact: aarmn80@gmail.com
- 	Date published: 10-5-2021
+ 	Date published: 16-5-2021
 	Current version: 1.0
 .LINK
-	https://www.limitless.page
-.EXAMPLE
-	HyperFast.ps1
+	https://gitlab.com/aarmn/hyper-fast
 #>
 
 Write-Host "`n`n`n`n`n`n`n"
@@ -83,10 +81,5 @@ switch ($result) {
 	0 {
 		Write-Host "Restarting..."
 		shutdown /g /t 3 /c "Restart for Enabling "
-		#restart computer with updates keep app open
 	}
 }
-
-
-# make readme.md of how to configure its lnk file
-# add flag of windows restart checker with cmd or windows (or detect it)
