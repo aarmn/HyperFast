@@ -9,7 +9,7 @@
  	Date published: 16-5-2021
 	Current version: 1.0
 .LINK
-	https://gitlab.com/aarmn/hyper-fast
+	https://github.com/aarmn/hyperfast
 #>
 
 Write-Host "`n`n`n`n`n`n`n"
