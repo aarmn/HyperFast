@@ -6,15 +6,15 @@
 .NOTES
  	Author: AARMN The LIMITLESS
 	Contact: aarmn80@gmail.com
- 	Date published: 16-5-2021
-	Current version: 1.0
+ 	Date published: 21-2-2022
+	Current version: 1.1
 .LINK
-	https://github.com/aarmn/hyperfast
+	https://github.com/aarmn/hyper-fast
 #>
+param([switch]$GUIMode=$false)
 
 Write-Host "`n`n`n`n`n`n`n"
-$QuestionRunMode = 1 # <<< Change This If you want a CLI prompt instead of a MsgBox [1:MsgBox 0:CLI]
-$WindowsFeatures = @('Containers','Containers-DisposableClientVM','VirtualMachinePlatform','HypervisorPlatform','Microsoft-Hyper-V-Tools-All','Microsoft-Hyper-V-All','Microsoft-Hyper-V-Management-Clients','Microsoft-Hyper-V-Services','Microsoft-Hyper-V-Hypervisor','Microsoft-Hyper-V-Management-PowerShell')
+$WindowsFeatures = @('Containers','Containers-DisposableClientVM','VirtualMachinePlatform','HypervisorPlatform','Microsoft-Hyper-V-All','Microsoft-Hyper-V-Tools-All','Microsoft-Hyper-V-Management-Clients','Microsoft-Hyper-V-Services','Microsoft-Hyper-V-Hypervisor','Microsoft-Hyper-V-Management-PowerShell')
 $FailedFeatures = @('Some Features Failed to get Enabled/Disabled, including: ')
 try {
 	$WindowsFeatureState = (Get-WindowsOptionalFeature -FeatureName 'VirtualMachinePlatform' -Online).State
@@ -51,16 +51,16 @@ if ($FailedFeatures.Length -gt 1){
 	}
 }
 $title = "Restart Prompt"
-$message = "For Changes to Take Effect You Need to Restart, Do You Want to Restart System Now?"
-switch($QuestionRunMode){
-	0{
+$message = "For changes to take effect, you need to restart. Do you want to restart system now?"
+switch($GUIMode){
+	$false{
 		$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","System will restart right now"
 		$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","Restart manually or debug the process (in case of error)"
 		$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
 		$result = $host.ui.PromptForChoice($title , $message , $options, 1)
 	}
-	1{
-		[System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+	$true{
+		[void]([System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms"))		
 		$oReturn=[System.Windows.Forms.MessageBox]::Show($message,$title,[System.Windows.Forms.MessageBoxButtons]::OKCancel) 
 		switch ($oReturn){
 			"OK" {
