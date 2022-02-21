@@ -12,10 +12,17 @@
      https://github.com/aarmn/hyperfast
 #>
 
-# check windows
-# check hash of files
-# better names
-# sucess var problem
+# Set-Location ~ ; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/Setup.ps1" -OutFile setup.ps1 ; Start-Process powershell.exe -Verb RunAs -ArgumentList (" -file `"$env:USERPROFILE\Setup.ps1`" -elevated" -f ($myinvocation.MyCommand.Definition)) ; Remove-Item "$env:USERPROFILE\Setup.ps1" ; Set-Location -
+
+
+# TODO: check windows
+# TODO: check hash of files
+# TODO: better names
+# TODO: uninstall setup and log in home as well
+# TODO: Reinstall Uninstall problem
+# TODO: OneLiner Self Destruct, and other stuffs
+# TODO: Ask startmenu elevation // Ask where is the path of elevation and if sth dont elevate or run dl code
+# TODO: PS2EXE
 
 Write-Output "" > hyperfast.log
 
@@ -92,16 +99,10 @@ Function Install-HyperFast () {
         $host.ui.WriteLine("HyperFast installed successfully!")
 }
 
-Function Reinstall-HyperFast () {
-        $host.ui.WriteLine("Reinstalling HyperFast...")
-        Uninstall-HyperFast
-        Install-HyperFast
-}
-
 $psfolderpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast"
 $psscriptpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast\HyperFast.ps1"
 $desktoplink = "$((Get-Childitem Env:USERPROFILE).Value)\Desktop\HyperFast On-Off.lnk"
-$startmenulink = "$((Get-Childitem Env:STARTMENU).Value)\HyperFast On-Off.lnk"
+$startmenulink = "$((Get-Childitem Env:USERPROFILE).Value)\Start Menu\HyperFast On-Off.lnk"
 
 $psf_exist = Test-Path -Path $psfolderpath -PathType Container
 $pss_exist = Test-Path -Path $psscriptpath -PathType Leaf
@@ -127,6 +128,7 @@ $actionIndex = $host.ui.PromptForChoice(
         0
 )
 $action = $options[$actionIndex].Label
+$host.ui.WriteLine("You chose $action")
 
 Switch ($action) {
         "&Install" { 
@@ -136,7 +138,10 @@ Switch ($action) {
                 Uninstall-HyperFast
         }
         "&Reinstall" { 
-                Reinstall-HyperFast
+                $host.ui.WriteLine("Reinstalling HyperFast...")
+                Uninstall-HyperFast
+                Start-Sleep 3
+                Install-HyperFast
         }
         Default { 
                 Exit
