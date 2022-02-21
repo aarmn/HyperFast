@@ -143,3 +143,4 @@ Switch ($action) {
         }
 }
 Start-Sleep 3
+Exit
