@@ -103,7 +103,7 @@ Function Install-HyperFast () {
 }
 
 $psfolderpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast"
-$psscriptpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast\HyperFast.ps1"
+$psscriptpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast\HyperFast.exe"
 $desktoplink = "$((Get-Childitem Env:USERPROFILE).Value)\Desktop\HyperFast On-Off.lnk"
 $startmenulink = "$((Get-Childitem Env:USERPROFILE).Value)\Start Menu\HyperFast On-Off.lnk"
 
