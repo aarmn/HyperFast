@@ -14,6 +14,7 @@ TODO: OneLiner Self Destruct, and other stuffs
 
 -->
 ![Logo of HyperFast](https://raw.githubusercontent.com/aarmn/HyperFast/master/icon/hyperfast-bg.png)
+![PowerShell Badge](https://img.shields.io/badge/PowerShell-00AFEF?style=for-the-badge&logo=powershell&logoColor=white)
 ## What? Why? And for Who?
 🚀 The fastest way to turn Hyper-V family of features on and off in Microsoft Windows.
 If you are a developer or someone who constantly use a combination of following tools: WSL2, Docker, HyperV, Windows Sandbox, Intel HAXM, BlueStacks, VMWare, VirtualBox, or any other virtualization and many other non-virtualization tools you possibly encountered minutes and minutes wasted on toggling some checkboxes on and off in windows features, which either lead you to googling each time, memorizing them, or writing them on a note somewhere, and sometimes the messages are pretty unhelpful (e.g. BlueStack message which told me my HyperV is on while my HypervisorPlatform was on)
