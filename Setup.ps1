@@ -42,9 +42,10 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 Function Create-Shortcut-HyperFast ($sourcePath, $shortcutPath, $GUIMode) {
         $shell = New-Object -ComObject WScript.Shell
         $shortcut = $shell.CreateShortcut($shortcutPath)
-        $shortcut.TargetPath = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
-        $shortcut.IconLocation = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
-        $shortcut.Arguments = "-ExecutionPolicy Bypass -WindowStyle Maximized -File `" $sourcePath`"$GUIMode" # dollar
+        $shortcut.TargetPath = "$SourcePath"
+        $shortcut.IconLocation = "$SourcePath"
+        $shortcut.WindowStyle = 3
+        $shortcut.Arguments = "$GUIMode" # dollar
         $shortcut.Save()
 
         $lnkBytes = [System.IO.File]::ReadAllBytes($shortcutPath)
@@ -70,7 +71,7 @@ Function Install-HyperFast () {
                 New-Item $psfolderpath -itemtype Directory
         }
         if (!($pss_exist)) {
-                Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/HyperFast.ps1" -OutFile $psscriptpath 2>> hyperfast.log
+                Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/out/HyperFast.exe" -OutFile $psscriptpath 2>> hyperfast.log
                 $success = $?
                 If (!($success)) {
                         $host.ui.WriteLine("Couldn't download the file. Check the Internet connection")
