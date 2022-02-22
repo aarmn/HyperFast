@@ -10,7 +10,8 @@
 	Current version: 1.1
 .LINK
 	https://github.com/aarmn/hyper-fast
-#>
+#> 
+# Repititve Info
 param([switch]$GUIMode=$false)
 
 Write-Host "`n`n`n`n`n`n`n"

@@ -1,19 +1,21 @@
 <#
 .SYNOPSIS
-     HyperFast Installer
+     HyperFast Settup
 .DESCRIPTION
      Install HyperFast from its Github repo onto your computer, and Uninstall it
 .NOTES
      Author: AARMN The LIMITLESS
      Contact: aarmn80@gmail.com
      Date published: 21-2-2022
-     Current version: 1.1
+     Current version: 1.2
 .LINK
      https://github.com/aarmn/hyperfast
 #>
 
-# Set-Location ~ ; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/Setup.ps1" -OutFile setup.ps1 ; Start-Process powershell.exe -Verb RunAs -ArgumentList (" -file `"$env:USERPROFILE\Setup.ps1`" -elevated" -f ($myinvocation.MyCommand.Definition)) ; Remove-Item "$env:USERPROFILE\Setup.ps1" ; Set-Location -
+# Repititve Info
 
+# Set-Location ~ ; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/Setup.ps1" -OutFile setup.ps1 ; Start-Process powershell.exe -Verb RunAs -ArgumentList (" -file `"$env:USERPROFILE\Setup.ps1`" -elevated" -f ($myinvocation.MyCommand.Definition)) ; Remove-Item "$env:USERPROFILE\Setup.ps1" ; Set-Location -
+# set-ExecutionPolicy RemoteSigned -Scope CurrentUser ; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/Setup.ps1" -OutFile "$env:USERPROFILE\Setup.ps1" ; Start-Process powershell.exe -Verb RunAs -ArgumentList ("-noprofile -file `"$env:USERPROFILE\Setup.ps1`" -elevated" -f ($myinvocation.MyCommand.Definition))
 
 # TODO: check windows
 # TODO: check hash of files
