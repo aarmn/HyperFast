@@ -11,20 +11,8 @@
 .LINK
      https://github.com/aarmn/hyperfast
 #>
-
+param([switch]$ScriptMode=$false)
 # Repititve Info
-
-# Set-Location ~ ; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/Setup.ps1" -OutFile setup.ps1 ; Start-Process powershell.exe -Verb RunAs -ArgumentList (" -file `"$env:USERPROFILE\Setup.ps1`" -elevated" -f ($myinvocation.MyCommand.Definition)) ; Remove-Item "$env:USERPROFILE\Setup.ps1" ; Set-Location -
-# set-ExecutionPolicy RemoteSigned -Scope CurrentUser ; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/Setup.ps1" -OutFile "$env:USERPROFILE\Setup.ps1" ; Start-Process powershell.exe -Verb RunAs -ArgumentList ("-noprofile -file `"$env:USERPROFILE\Setup.ps1`" -elevated" -f ($myinvocation.MyCommand.Definition))
-
-# TODO: check windows
-# TODO: check hash of files
-# TODO: better names
-# TODO: uninstall setup and log in home as well
-# TODO: Reinstall Uninstall problem
-# TODO: OneLiner Self Destruct, and other stuffs
-# TODO: Ask startmenu elevation // Ask where is the path of elevation and if sth dont elevate or run dl code
-# TODO: PS2EXE
 
 Write-Output "" > hyperfast.log
 
@@ -40,6 +28,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 }
 
 Function Create-Shortcut-HyperFast ($sourcePath, $shortcutPath, $GUIMode) {
+        # script mode ifs
         $shell = New-Object -ComObject WScript.Shell
         $shortcut = $shell.CreateShortcut($shortcutPath)
         $shortcut.TargetPath = "$SourcePath"
@@ -71,7 +60,8 @@ Function Install-HyperFast () {
                 New-Item $psfolderpath -itemtype Directory
         }
         if (!($pss_exist)) {
-                Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/out/HyperFast.exe" -OutFile $psscriptpath 2>> hyperfast.log
+                if ($ScriptMode){ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/HyperFast.ps1"     -OutFile $psscriptpath 2>> hyperfast.log }
+                else            { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/aarmn/HyperFast/master/out/HyperFast.exe" -OutFile $psscriptpath 2>> hyperfast.log }
                 $success = $?
                 If (!($success)) {
                         $host.ui.WriteLine("Couldn't download the file. Check the Internet connection")
@@ -103,7 +93,8 @@ Function Install-HyperFast () {
 }
 
 $psfolderpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast"
-$psscriptpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast\HyperFast.exe"
+if ($ScriptMode) { $psscriptpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast\HyperFast.ps1" }
+else             { $psscriptpath = "$((Get-Childitem Env:LOCALAPPDATA).Value)\HyperFast\HyperFast.exe" }
 $desktoplink = "$((Get-Childitem Env:USERPROFILE).Value)\Desktop\HyperFast On-Off.lnk"
 $startmenulink = "$((Get-Childitem Env:USERPROFILE).Value)\Start Menu\HyperFast On-Off.lnk"
 
