@@ -1,4 +1,4 @@
-Install-Module ps2exe
+Install-Module ps12exe
 mkdir out
-ps2exe -supportOS -requireAdmin -UNICODEEncoding -title "HyperFast Setup" -description "Install HyperFast from its Github repo onto your computer, and Uninstall it" -copyright "MIT, by AARMN The Limitless" -version "1.3.0" -iconFile ".\icon\hyperfast-bg.ico" -outputFile ".\out\Setup.exe" .\Setup.ps1   # Repititve Info
-ps2exe -supportOS -requireAdmin -UNICODEEncoding -title "HyperFast" -description "Enable and Disable Hyper-V Based Features like Docker, Kubernate, WSL2, Windows Sandbox, WindowsPhone Emulation and when disabled, enable Feaatures like BlueStacks, VMWare, Qemu HAXM Engine, VirtualBox" -copyright "MIT, by AARMN The Limitless" -version "1.3.0" -iconFile ".\icon\hyperfast-bg.ico" -outputFile ".\out\HyperFast.exe" .\HyperFast.ps1  # Repititve Info
+ps12exe -inputFile ".\Setup.ps1" -outputFile ".\out\Setup.exe"
+ps12exe -inputFile ".\HyperFast.ps1" -outputFile ".\out\HyperFast.exe"

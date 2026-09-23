@@ -11,6 +11,14 @@
 .LINK
 	https://github.com/aarmn/hyper-fast
 #> 
+#_pragma Os.ModernOS
+#_pragma Os.Admin
+#_pragma App.OutputEncoding UTF16LE
+#_pragma Resources.Title 'HyperFast'
+#_pragma Resources.Description 'Enable and Disable Hyper-V Based Features like Docker, Kubernate, WSL2, Windows Sandbox, WindowsPhone Emulation and when disabled, enable Feaatures like BlueStacks, VMWare, Qemu HAXM Engine, VirtualBox'
+#_pragma Resources.Copyright 'MIT, by AARMN The Limitless'
+#_pragma Resources.Version '1.3.0'
+#_pragma Resources.Icon $PSScriptRoot/icon/hyperfast-bg.ico
 # Repititve Info
 param([switch]$GUIMode=$false)
 
