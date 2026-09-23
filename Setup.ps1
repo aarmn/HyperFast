@@ -11,6 +11,14 @@
 .LINK
      https://github.com/aarmn/hyperfast
 #>
+#_pragma Os.ModernOS
+#_pragma Os.Admin
+#_pragma App.OutputEncoding UTF16LE
+#_pragma Resources.Title 'HyperFast Setup'
+#_pragma Resources.Description 'Install HyperFast from its Github repo onto your computer, and Uninstall it'
+#_pragma Resources.Copyright 'MIT, by AARMN The Limitless'
+#_pragma Resources.Version '1.3.0'
+#_pragma Resources.Icon $PSScriptRoot/icon/hyperfast-bg.ico
 param([switch]$ScriptMode=$false)
 # Repititve Info
 
